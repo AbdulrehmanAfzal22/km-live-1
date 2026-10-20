@@ -1,0 +1,82 @@
+.expertise-section { position: relative; overflow: clip; padding: 112px 0 88px; background: #15130f; color: #f6f1e7; }
+.expertise-header { width: min(calc(100% - 96px), 1180px); margin: 0 auto 22px; }
+.expertise-eyebrow { margin: 0 0 24px; color: #d6a69a; font: 500 10px/1.6 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+.expertise-header h2 { max-width: 1120px; margin: 0; font: 500 clamp(54px, 6.4vw, 88px)/1.02 var(--heading); letter-spacing: -.055em; text-wrap: balance; }
+.expertise-header h2 em { display: block; color: #d9aaa0; font-style: normal; }
+.expertise-introduction { max-width: 620px; margin: 24px 0 0; color: #b4ada1; font: 400 15px/1.75 var(--reference-font); }
+.expertise-carousel { position: relative; }
+.expertise-window { overflow: hidden; }
+.expertise-scene { height: clamp(520px, 68svh, 650px); perspective: 1600px; perspective-origin: 50% 48%; touch-action: pan-y; }
+.expertise-track { position: relative; height: 100%; transform-style: preserve-3d; }
+.expertise-card { position: absolute; top: 50%; left: 50%; display: grid; grid-template-columns: minmax(0, .98fr) minmax(0, 1.02fr); width: min(68vw, 900px); height: min(510px, calc(100% - 76px)); margin: 0; overflow: hidden; border: 1px solid #4b4037; border-radius: 28px; background: #251e19; color: #f6f1e7; backface-visibility: hidden; transform: translate3d(-50%, -50%, 0); opacity: 0; will-change: transform; }
+.expertise-card:first-child { opacity: 1; }
+.expertise-card--2 { background: #222820; border-color: #42493c; }
+.expertise-card--3 { background: #20262a; border-color: #3e4a50; }
+.expertise-photo { min-width: 0; min-height: 0; overflow: hidden; background: #1b1c1a; }
+.expertise-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; user-select: none; }
+.expertise-card--3 .expertise-photo img { object-position: 48% 50%; }
+/* The real meeting photo belongs to the dedicated business strategy & AI card. */
+.expertise-card--4 { background: #292020; border-color: #66504a; }
+.expertise-card--4 .expertise-photo img { object-position: center 46%; }
+.expertise-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; padding: clamp(25px, 3vw, 44px); }
+.expertise-card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.expertise-icon { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #8e6b4e; border-radius: 50%; color: #d3ac7e; }
+.expertise-number { color: #b9ab9b; font: 400 11px/1 var(--mono); letter-spacing: .12em; }
+.expertise-label { margin: 0 0 13px; color: #d8b3a7; font: 500 10px/1.6 var(--reference-font); letter-spacing: .12em; text-transform: uppercase; }
+.expertise-copy h3 { margin: 0 0 20px; color: #f6f1e7; font: 500 clamp(28px, 2.8vw, 42px)/1.1 var(--heading); letter-spacing: -.035em; text-wrap: balance; }
+.expertise-description { margin: 0; color: #c3bcb0; font: 400 clamp(13px, 1vw, 15px)/1.75 var(--reference-font); }
+.expertise-controls { display: flex; width: min(calc(100% - 96px), 1180px); min-height: 48px; align-items: center; justify-content: space-between; gap: 24px; margin: 0 auto; }
+.expertise-chapters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.expertise-chapters button { min-height: 44px; padding: 10px 16px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #ada599; font: 400 12px/1.4 var(--reference-font); cursor: pointer; transition: color 250ms ease, background-color 250ms ease; }
+.expertise-chapters button[aria-pressed='true'] { border-color: #655145; background: #352a23; color: #f6f1e7; }
+.expertise-chapters button:hover { color: #f6f1e7; }
+.expertise-arrows { display: flex; flex: 0 0 auto; gap: 9px; }
+.expertise-arrows button { display: grid; width: 46px; height: 46px; place-items: center; padding: 0; border: 1px solid #65594c; border-radius: 50%; background: transparent; color: #f6f1e7; cursor: pointer; transition: background-color 250ms ease; }
+.expertise-arrows button:hover { background: #352a23; }
+.expertise-carousel button:focus-visible { outline: 2px solid #e0b9ad; outline-offset: 4px; }
+@media (max-width: 1050px) and (min-width: 701px) {
+  .expertise-card { width: 76vw; }
+  .expertise-copy { padding: 26px; }
+  .expertise-copy h3 { font-size: 32px; }
+  .expertise-controls { gap: 16px; }
+  .expertise-chapters { gap: 0; }
+  .expertise-chapters button { padding: 10px 9px; font-size: 11px; }
+}
+@media (max-width: 700px) {
+  .expertise-section { padding: 76px 0 60px; }
+  .expertise-header { width: calc(100% - 40px); margin-bottom: 20px; }
+  .expertise-eyebrow { max-width: 300px; margin-bottom: 20px; font-size: 9px; letter-spacing: .12em; }
+  .expertise-header h2 { font-size: clamp(43px, 9vw, 60px); line-height: 1.05; }
+  .expertise-introduction { margin-top: 20px; font-size: 14px; }
+  .expertise-scene { height: 688px; perspective: 1000px; }
+  .expertise-card { width: min(calc(100vw - 64px), 450px); height: 620px; grid-template-columns: 1fr; grid-template-rows: 40% 60%; border-radius: 22px; }
+  .expertise-photo img { object-position: center 45%; }
+  .expertise-copy { padding: 24px; }
+  .expertise-card-meta { margin-bottom: 16px; }
+  .expertise-icon { width: 34px; height: 34px; }
+  .expertise-icon svg { width: 18px; height: 18px; }
+  .expertise-copy h3 { margin-bottom: 14px; font-size: clamp(27px, 6vw, 33px); }
+  .expertise-label { font-size: 9px; margin-bottom: 10px; }
+  .expertise-description { font-size: 13px; line-height: 1.65; }
+  .expertise-controls { width: calc(100% - 40px); flex-direction: column; gap: 20px; }
+  .expertise-chapters { justify-content: center; gap: 2px; }
+  .expertise-chapters button { padding: 10px 11px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .expertise-scene { perspective: none; }
+  .expertise-card { will-change: auto; }
+  .expertise-carousel button { transition: none; }
+}
+
+/* Editorial polish: the established carousel/card template and copy remain unchanged. */
+.expertise-header h2 { max-width: 1200px; letter-spacing: -.06em; }
+.expertise-header h2 em { color: #e6b4aa; }
+.expertise-copy h3 { text-wrap: balance; letter-spacing: -.04em; }
+.expertise-card { box-shadow: 0 22px 66px rgba(0,0,0,.17); }
+.expertise-card--4 .expertise-icon { color: #e3b2a2; border-color: #95695c; }
+.expertise-card--4 .expertise-label { color: #e3b2a2; }
+@media (max-width: 700px) {
+  .expertise-header h2 { letter-spacing: -.045em; }
+  .expertise-copy { justify-content: center; }
+  .expertise-card--4 .expertise-photo img { object-position: center center; }
+}

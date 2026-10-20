@@ -1,0 +1,230 @@
+/* Cross-device layout refinements — loaded after all section styles.
+   Fluid tracks, adaptive cards, and accessible controls prevent clipping rather
+   than merely concealing horizontal overflow. */
+:root { --page-gutter: clamp(16px, 4vw, 64px); }
+html { -webkit-text-size-adjust: 100%; }
+body { min-width: 0; }
+#root, main { min-width: 0; width: 100%; }
+main > *, section, header, footer { min-width: 0; }
+img, svg, video { max-width: 100%; }
+img { height: auto; }
+h1, h2, h3, p { overflow-wrap: break-word; }
+a, button { -webkit-tap-highlight-color: transparent; }
+.site-footer-email, .site-footer-column a, .contact-page-detail-list a,
+.contact-field, .contact-field input, .contact-field textarea { min-width: 0; overflow-wrap: anywhere; }
+.contact-field input, .contact-field textarea, .contact-field select { max-width: 100%; }
+
+/* Wide and medium desktop: real grid shrinkability and consistent side gutters. */
+@media (min-width: 1025px) and (max-width: 1300px) {
+  .new-hero { grid-template-columns: minmax(0, 1fr) minmax(0, .86fr); gap: clamp(30px, 5vw, 72px); padding-inline: clamp(28px, 4vw, 52px); }
+  .new-hero-content, .new-hero-image-column, .new-hero-portrait { min-width: 0; }
+  .new-hero-title { font-size: clamp(42px, 4.8vw, 64px); }
+  .new-hero-pillars { gap: 12px; }
+  .new-hero-pillar { padding-inline: 17px; }
+}
+@media (max-width: 1100px) {
+  .site-footer { padding-inline: var(--page-gutter); }
+  .site-footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+  .site-footer-brand { max-width: none; }
+  .site-footer-contact { grid-column: span 2; }
+}
+/* Swap to a real hamburger before the navigation starts crowding the logo. */
+@media (max-width: 960px) {
+  .site-header { height: 68px; padding: 0 var(--page-gutter); }
+  .site-header .wordmark { flex: 0 0 auto; min-width: 0; }
+  .site-header .wordmark-logo { height: 64px; max-width: min(40vw, 130px); object-fit: contain; }
+  .site-header .menu-toggle { display: inline-grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; margin-left: auto; cursor: pointer; }
+  .site-header .desktop-nav:not(.open) { display: none !important; }
+  .site-header.menu-open { position: fixed; z-index: 10000; background: var(--paper); color: var(--ink); }
+  .site-header.menu-open .menu-toggle { position: relative; z-index: 10001; color: var(--ink); }
+  .site-header .desktop-nav.open {
+    position: fixed !important; inset: 68px 0 0 !important; z-index: 9999 !important;
+    display: flex !important; flex-direction: column; align-items: stretch;
+    width: 100% !important; height: calc(100dvh - 68px) !important;
+    max-height: calc(100dvh - 68px) !important;
+    gap: 0; margin: 0; padding: 12px clamp(20px, 5vw, 64px) 32px;
+    overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+    background: var(--paper) !important; color: var(--ink);
+    border-top: 1px solid rgba(125,44,51,.15);
+  }
+  .site-header .desktop-nav.open a {
+    display: flex; min-height: 54px; align-items: center;
+    padding: 14px 0; color: var(--ink) !important;
+    border-bottom: 1px solid rgba(20,16,12,.12);
+    font: 500 clamp(17px, 2.4vw, 22px)/1.3 var(--heading);
+    text-transform: uppercase; letter-spacing: .04em;
+    animation: none !important;
+  }
+  .site-header .desktop-nav.open a.active,
+  .site-header .desktop-nav.open a:hover { color: var(--wine) !important; }
+  .site-header .desktop-nav.open a::after { display: none; }
+  .site-header .desktop-nav.open a:focus-visible,
+  .site-header .menu-toggle:focus-visible { outline: 2px solid #9e4b45; outline-offset: -2px; }
+  .gallery-controls, .qualification-header { width: calc(100% - 2 * var(--page-gutter)); }
+  .scroll-gallery-panel, .scroll-gallery-stage--stack .scroll-gallery-panel { width: min(calc(100% - 2 * var(--page-gutter)), 780px); }
+  .gallery-chapters { min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+  .gallery-chapters button { flex: 0 0 auto; white-space: nowrap; }
+}
+/* Laptop/tablet: allow balanced sections without fixed-height text clipping. */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .new-hero { padding-top: 98px; }
+  .new-hero-pillars { min-width: 0; }
+  .new-hero-pillar { min-width: 0; padding: 24px 18px; }
+  .new-hero-pillar h2 { font-size: clamp(24px, 3vw, 36px); }
+  .new-hero .new-hero-image-frame { aspect-ratio: 4 / 5; }
+  .expertise-header, .expertise-controls { width: calc(100% - 2 * var(--page-gutter)); }
+  .expertise-card { width: min(86vw, 740px); }
+  .expertise-scene { height: 610px; }
+  .expertise-card { height: min(535px, calc(100% - 40px)); }
+  .expertise-copy { padding: clamp(20px, 3vw, 32px); }
+  .expertise-copy h3 { font-size: clamp(27px, 3.3vw, 36px); }
+  .recognition-section .scroll-gallery-stage { height: clamp(600px, 76svh, 770px); }
+  .recognition-section .scroll-gallery-panel { height: calc(100% - 28px); }
+  .recognition-section .recognition-description { font-size: 13px; }
+  .editorial-products-grid { gap: 16px; }
+}
+@media (max-width: 820px) {
+  .site-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer-brand, .site-footer-contact { grid-column: 1 / -1; }
+  .contact-page-grid, .uzbekistan-heading-grid, .uzbekistan-gallery-grid { min-width: 0; }
+  .expertise-header h2 { overflow-wrap: anywhere; }
+}
+
+/* Small tablets and phones: genuine stacked content, no sideways panning needed. */
+@media (max-width: 700px) {
+  .new-hero { padding-inline: var(--page-gutter); }
+  .new-hero-pillars { width: 100%; grid-template-columns: minmax(0, 1fr); }
+  .new-hero-pillar { min-height: 0; padding: 26px 24px; }
+  .new-hero-portrait { width: 100%; }
+  .new-hero .new-hero-image-frame { width: 100%; aspect-ratio: 4 / 5; }
+  .new-hero-title { max-width: 100%; font-size: clamp(32px, 9vw, 58px); line-height: 1.07; overflow-wrap: anywhere; }
+  .new-hero-secondary { max-width: 100%; }
+  .new-hero-badge { right: 4px; max-width: calc(100% - 8px); }
+  .expertise-section { padding-block: 72px 60px; }
+  .expertise-header, .expertise-controls { width: calc(100% - 2 * var(--page-gutter)); }
+  .expertise-header h2 { font-size: clamp(35px, 8.8vw, 61px); letter-spacing: -.045em; line-height: 1.08; }
+  .expertise-scene { height: clamp(700px, 120vw, 790px); }
+  .expertise-card { width: min(calc(100% - 2 * var(--page-gutter)), 460px); height: calc(100% - 34px); grid-template-rows: minmax(190px, 37%) minmax(0, 1fr); }
+  .expertise-copy { min-height: 0; padding: clamp(17px, 4vw, 26px); }
+  .expertise-copy h3 { font-size: clamp(24px, 6vw, 34px); margin-bottom: 12px; }
+  .expertise-copy .expertise-card-meta { margin-bottom: 12px; }
+  .expertise-chapters { display: flex; flex-wrap: wrap; justify-content: center; width: 100%; }
+  .expertise-chapters button { min-height: 44px; }
+  .expertise-controls { gap: 12px; }
+  .expertise-arrows button { width: 48px; height: 48px; }
+  .recognition-section, .qualification-section { padding-block: 84px 44px; }
+  .recognition-header, .qualification-header { width: calc(100% - 2 * var(--page-gutter)); }
+  .recognition-header h2, .qualification-header h2 { overflow-wrap: anywhere; }
+  .recognition-section .scroll-gallery-stage { height: clamp(720px, 180vw, 850px); }
+  .scroll-gallery-stage--stack { height: clamp(730px, 170vw, 880px); }
+  .scroll-gallery-panel, .scroll-gallery-stage--stack .scroll-gallery-panel,
+  .recognition-section .scroll-gallery-panel { width: calc(100% - 2 * var(--page-gutter)); height: calc(100% - 24px); max-width: 560px; }
+  .scroll-gallery-panel .recognition-copy { min-height: 0; padding: 22px; }
+  .scroll-gallery-panel .recognition-title { font-size: clamp(22px, 5.6vw, 35px); overflow-wrap: anywhere; }
+  .scroll-gallery-panel .recognition-description { font-size: clamp(12px, 2.9vw, 14px); line-height: 1.55; }
+  .gallery-controls { width: calc(100% - 2 * var(--page-gutter)); }
+  .recognition-panel--announcement .scroll-gallery-panel-image { display: flex; min-height: 0; background: #f3efe4; }
+  .recognition-panel--announcement .scroll-gallery-panel-image img { object-fit: contain; width: 100%; height: 100%; }
+  .recognition-panel--announcement .recognition-copy { min-height: 0; padding: 15px clamp(14px, 4vw, 24px); }
+  .recognition-panel--announcement .recognition-title { font-size: clamp(22px, 5.5vw, 32px); }
+  .recognition-panel--announcement .recognition-description { margin-bottom: 10px; }
+  .qualification-panel .recognition-copy { z-index: 2; }
+  .editorial-products-grid { grid-auto-rows: minmax(580px, auto); }
+  .ventures-company-grid { grid-auto-rows: minmax(360px, auto); }
+  .uzbekistan-gallery-grid { gap: 22px; }
+  .uzbekistan-feature { padding-inline: var(--page-gutter); }
+  .uzbekistan-feature h2 { font-size: clamp(36px, 7.6vw, 58px); overflow-wrap: anywhere; }
+  .uzbekistan-portrait { min-width: 0; }
+  .contact-page { padding-inline: var(--page-gutter); }
+  .contact-form-wrap { max-width: 100%; }
+  .site-footer { padding-inline: var(--page-gutter); }
+}
+@media (max-width: 480px) {
+  .site-header { height: 62px; }
+  .site-header .wordmark-logo { height: 57px; }
+  .site-header .desktop-nav.open { inset: 62px 0 0 !important; height: calc(100dvh - 62px) !important; max-height: calc(100dvh - 62px) !important; padding-top: 12px; }
+  .new-hero { gap: 30px; padding-top: 76px; }
+  .new-hero .new-hero-image-frame { aspect-ratio: 4 / 5; }
+  .new-hero-badge { min-width: 0; }
+  .new-hero-pillars { width: 100%; }
+  .new-hero-pillar { border-radius: 15px; }
+  .expertise-header h2 { font-size: clamp(33px, 9.1vw, 44px); }
+  .expertise-card { grid-template-rows: minmax(155px, 31%) minmax(0, 1fr); }
+  .expertise-photo { min-height: 0; }
+  .expertise-scene { height: clamp(725px, 188vw, 800px); }
+  .expertise-description { line-height: 1.6; }
+  .expertise-chapters button { padding: 8px 10px; }
+  .recognition-section .scroll-gallery-stage { height: clamp(780px, 218vw, 950px); }
+  .scroll-gallery-stage--stack { height: clamp(790px, 210vw, 960px); }
+  .scroll-gallery-panel .recognition-copy { padding: 18px; }
+  .recognition-panel--announcement .recognition-copy { padding: 14px 18px; }
+  .recognition-panel--announcement .recognition-context { margin-bottom: 6px; }
+  .gallery-controls { min-height: 58px; margin-top: 5px; }
+  .gallery-buttons button { width: 48px; height: 48px; }
+  .uzbekistan-portrait { display: flex; flex-direction: column; }
+  .uzbekistan-portrait-frame { min-height: 0; aspect-ratio: 4 / 3; flex: 0 0 auto; }
+  .uzbekistan-portrait figcaption { padding: 14px 8px 8px; }
+  .uzbekistan-portrait .uzbekistan-closing { margin-top: 14px; }
+  .uzbekistan-thumbnails { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; }
+  .uzbekistan-feature .uzbekistan-thumbnails button { min-height: 38px; }
+  .uzbekistan-photo-caption { align-items: flex-start; }
+  .products-list.editorial-products-section, .ventures-editorial { padding-inline: var(--page-gutter); }
+  .editorial-products-grid { grid-auto-rows: minmax(560px, auto); }
+  .editorial-products-grid .editorial-product-card { padding-inline: 22px; }
+  .contact-page-detail-list a, .contact-page-detail-list div { min-width: 0; }
+  .site-footer-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .site-footer-brand, .site-footer-contact { grid-column: 1; }
+  .site-footer-bottom { margin-top: 40px; }
+}
+@media (max-width: 359px) {
+  :root { --page-gutter: 12px; }
+  .new-hero-title { font-size: clamp(29px, 9.5vw, 35px); }
+  .new-hero-actions { width: 100%; }
+  .new-hero-secondary > span { min-width: 0; flex-basis: 110px; }
+  .expertise-scene { height: 780px; }
+  .expertise-header h2 { font-size: 31px; }
+  .expertise-copy { padding: 15px; }
+  .expertise-copy h3 { font-size: 24px; }
+  .expertise-description { font-size: 12px; }
+  .recognition-section .scroll-gallery-stage { height: 900px; }
+  .recognition-panel--announcement .recognition-copy { padding: 12px 14px; }
+  .recognition-panel--announcement .recognition-description { font-size: 12px; }
+  .contact-page-intro h1 { font-size: 42px; }
+  .editorial-product-card .editorial-product-title { font-size: 36px; }
+  .site-footer-email { font-size: 14px; }
+}
+@media (max-height: 650px) and (min-width: 701px) {
+  .expertise-scene { height: 570px; }
+  .scroll-gallery-stage { min-height: 520px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
+
+/* Final card-content protection and typographic consistency, all viewports. */
+.expertise-copy, .recognition-copy, .editorial-product-copy, .ventures-company-card { overflow-wrap: anywhere; }
+.expertise-copy h3, .recognition-title, .ventures-company-title,
+.editorial-product-title { text-wrap: balance; }
+@media (max-width: 700px) {
+  .expertise-card { grid-template-rows: minmax(172px, 34%) minmax(0, 1fr); }
+  .expertise-copy { justify-content: center; }
+  .expertise-description { font-size: clamp(12px, 3.25vw, 14px); line-height: 1.62; }
+  .expertise-chapters { gap: 4px 2px; }
+  .expertise-chapters button { max-width: 100%; padding-inline: clamp(7px, 1.8vw, 13px); }
+  .scroll-gallery-panel .recognition-copy { overflow: hidden; }
+  .scroll-gallery-panel .recognition-title { line-height: 1.13; }
+  .site-footer-socials .site-footer-linkedin { border: 0; background: transparent; }
+}
+@media (max-width: 360px) {
+  .expertise-card { grid-template-rows: minmax(150px, 27%) minmax(0, 1fr); }
+  .expertise-scene { height: 800px; }
+  .expertise-card .expertise-copy h3 { font-size: clamp(23px, 7vw, 28px); }
+  .expertise-card .expertise-description { font-size: 12px; }
+  .expertise-card-meta { margin-bottom: 10px; }
+  .expertise-chapters button { font-size: 10px; line-height: 1.25; }
+}
+/* Let long product names reflow rather than disappearing beyond mobile card edges. */
+@media (max-width: 760px) {
+  .editorial-product-card .editorial-product-title { white-space: normal; overflow-wrap: anywhere; font-size: clamp(39px, 11vw, 61px); }
+  .ventures-heading h2 { overflow-wrap: anywhere; }
+}

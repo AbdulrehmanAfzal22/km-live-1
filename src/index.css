@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@700;800&display=swap');
+:root { --ink: #15130F; --ink-soft: #1D1B17; --paper: #F6F1E7; --paper-dim: #ECE5D5; --brass: #B4894F; --brass-bright: #CF9F5F; --signal: #3FA8A0; --signal-bright: #55C2B9; --wine: #7D2C33; --wine-light: #A24D3D; --champagne: #C9A876; --red: #9E2F2F; --red-bright: #C84A42; --line-dark: rgba(246,241,231,0.16); --line-light: rgba(20,23,31,0.14); --sans: 'IBM Plex Sans', sans-serif; --reference-font: 'DM Sans', 'IBM Plex Sans', sans-serif; --heading: 'Fraunces', serif; --mono: 'IBM Plex Mono', monospace; font: 16px/1.5 var(--sans); color: var(--ink); background: var(--ink); font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+button, a { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 4px; }
+#root { min-height: 100svh; }
