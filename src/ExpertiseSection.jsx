@@ -30,7 +30,7 @@ export default function ExpertiseSection() {
     <section className="expertise-section" data-section="Qualification" aria-labelledby="expertise-heading">
       <header className="expertise-header">
         <p className="expertise-eyebrow">Professional foundations / Continuous learning</p>
-        <h2 id="expertise-heading">Where Business Strategy<em>Meets the Power of AI</em></h2>
+        <h2 id="expertise-heading">Expertise that<em>keeps evolving.</em></h2>
         <p className="expertise-introduction">Combining financial discipline, business strategy, and emerging AI knowledge to support more informed decisions.</p>
       </header>
       <div ref={rootRef} className="expertise-carousel" role="region" aria-roledescription="carousel" aria-label="Professional expertise and continued learning"
